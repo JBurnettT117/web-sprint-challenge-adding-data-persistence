@@ -5,7 +5,7 @@ const projectRouter = require('./project/router');
 
 const resourceRouter = require('./resource/router');
 
-const taskRouter = require('./task/router');
+const tasksRouter = require('./task/router');
 
 const server = express();
 
@@ -15,7 +15,7 @@ server.use('/api/project', projectRouter);
 
 server.use('/api/resource', resourceRouter);
 
-server.use('/api/task', taskRouter);
+server.use('/api/tasks', tasksRouter);
 
 server.use('*', (req, res) => {
     res.json({ Message: "this endpoint does not exist" })
