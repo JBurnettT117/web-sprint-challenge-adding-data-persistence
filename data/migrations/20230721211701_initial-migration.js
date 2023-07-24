@@ -6,7 +6,7 @@ const { resource } = require("../../api/server");
  */
 exports.up = async function(knex) {
     await knex.schema
-        .createTable('projects', table => {//check the order of the tables, you may need to draw it out. make sure they are in a funcitonal order
+        .createTable('projects', table => {
             table.increments('project_id')
             table.string('project_name')
                 .notNullable()
@@ -68,8 +68,8 @@ exports.up = async function(knex) {
  */
 exports.down = async function(knex) {
     await knex.schema
+        .dropTableIfExists('projects_resources')
+        .dropTableIfExists('tasks')
+        .dropTableIfExists('resources')    
         .dropTableIfExists('projects')
-        .dropTableIfExists('resources')
-        .dropTableIfExists('tasks')    
-        .dropTableIfExists('project_resources')
 };
