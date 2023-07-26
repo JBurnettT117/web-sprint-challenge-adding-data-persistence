@@ -20,4 +20,8 @@ function add(resource) {
         })
 }
 
-module.exports = { postResource }
+async function find() {
+    return db('resources')
+}
+
+module.exports = { postResource, find }

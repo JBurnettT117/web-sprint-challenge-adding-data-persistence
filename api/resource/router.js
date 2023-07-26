@@ -17,8 +17,11 @@ router.post('/', checkName, checkIfExists, (req, res, next) => {
 });
 
 router.get('/', async (req, res, next) => {
-    const resources = await db('resources')
-    res.json({resources: `${resources}`})
+    Resource.find()
+        .then(resources => {
+            res.json(resources)
+        })
+        .catch(next)
 })
 
 router.use((err, req, res, next) => {
