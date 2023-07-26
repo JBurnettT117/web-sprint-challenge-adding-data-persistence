@@ -6,13 +6,12 @@ const Resource = require('./model');
 const db = require('../../data/dbConfig');
 
 const { 
-    checkName,
-    checkIfExists,
+    checkResourceName,
+    checkIfResourceExists,
     } = require('../middleware');
 
-router.post('/', checkName, checkIfExists, (req, res, next) => {
+router.post('/', checkResourceName, checkIfResourceExists, (req, res, next) => {
     Resource.postResource( req.body.resource_name, req.body.resource_description)
-    console.log(req.body)
     res.status(201).json({resource_name: `${req.body.resource_name}`})
 });
 

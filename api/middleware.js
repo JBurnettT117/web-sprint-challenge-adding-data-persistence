@@ -1,6 +1,6 @@
 const db = require('../data/dbConfig');
 
-const checkName = async (req, res, next) => {
+const checkResourceName = async (req, res, next) => {
     const name = req.body.resource_name
     if(
         name === undefined ||
@@ -13,7 +13,7 @@ const checkName = async (req, res, next) => {
     }
 }
 
-const checkIfExists = async (req, res, next) => {
+const checkIfResourceExists = async (req, res, next) => {
     const name = req.body.resource_name
     const exist = await db('resources').where("resource_name", name).first()
     if(exist) {
@@ -23,7 +23,21 @@ const checkIfExists = async (req, res, next) => {
     }
 }
 
+const checkProjectName = async (req, res, next) => {
+    const name = req.body.project_name
+    if(
+        name === undefined ||
+        typeof name !== 'string' ||
+        !name.trim()
+    ) {
+        res.status(400).json({message: 'invalid name'})
+    } else {
+        next()
+    }
+}
+
 module.exports = {
-    checkName,
-    checkIfExists,
+    checkResourceName,
+    checkIfResourceExists,
+    checkProjectName
 }
