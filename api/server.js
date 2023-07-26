@@ -13,7 +13,7 @@ server.use(express.json());
 
 server.use('/api/project', projectRouter);
 
-server.use('/api/resource', resourceRouter);
+server.use('/api/resources', resourceRouter);
 
 server.use('/api/tasks', tasksRouter);
 

@@ -1,12 +1,23 @@
 // build your `Resource` model here
 
-// async function postResource(resource_id, resource_name, resource_description) {
+const db = require('../../data/dbConfig')
 
-//     console.log(
-//         resource_id,
-//         resource_name,
-//         resource_description
-//     )
-// }
+async function postResource( resource_name, resource_description) {
 
-// module.exports = { postResource }
+    const resource = { 
+        resource_name: resource_name, 
+        resource_description: resource_description
+    }
+
+    add(resource);
+}
+
+function add(resource) {
+    return db('resources').insert(resource)
+        .then()
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+module.exports = { postResource }
