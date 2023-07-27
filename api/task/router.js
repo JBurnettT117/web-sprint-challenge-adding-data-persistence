@@ -39,6 +39,21 @@ router.post('/', checkTaskDescription, checkProjectId, verifyProjectId, (req, re
     .catch(next)
 })
 
+router.get('/', (req, res, next) => {
+    Task.find()
+        .then(tasks => {
+            tasks.forEach(task => {
+                if(task.task_completed === 0){
+                    task.task_completed = false
+                } else if(task.task_completed === 1){
+                    task.task_completed = true
+                } 
+            });
+            res.json(tasks)
+        })
+        .catch(next)
+})
+
 router.use((err, req, res, next) => {
     res.status(500).json({
         customMessage: "something went wrong inside the Task router",

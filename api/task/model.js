@@ -30,6 +30,9 @@ async function findByDescription(task_description) {
 
 async function find() {
     return db('tasks')
+    .select('tasks.task_id', 'tasks.task_description', 'tasks.task_notes', 'tasks.task_completed',
+    'projects.project_name', 'projects.project_description')
+.innerJoin('projects', 'tasks.project_id', 'projects.project_id')
 }
 
 module.exports = { postTask, find, findByDescription, }
