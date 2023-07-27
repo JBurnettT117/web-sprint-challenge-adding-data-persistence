@@ -19,6 +19,8 @@ In this project you will be given a set of requirements and must design a databa
 
 ### Files to Complete
 
+Adding my Name - Joshua Burnett
+
 1. `package.json`
 2. `index.js`
 3. `api/server.js`
